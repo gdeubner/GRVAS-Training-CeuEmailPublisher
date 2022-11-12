@@ -1,0 +1,20 @@
+Hey guys, 
+
+Here are the free or very inexpensive CEU options for the month of <month>. Please reach out if you have any questions!
+
+RWJ Classes
+Register at: <RwjbhUrl>
+	<RwjbhClasses>
+	
+Mountainside Classes
+(Reminder: these mountainside classes serve as our monthly training meeting. Try to attend if you can!)
+Register at: <MountainsideUrl>
+	<MountainsideClasses>
+	
+Additionally, Bergen County EMS offers an assortment of online, interactive, CEU courses which you can take at your own speed. Most are less than $5. Here's the course registration link: 
+<BergenCountyURL>
+	
+Best,
+
+Graham Deubner
+GRVAS Training Officer

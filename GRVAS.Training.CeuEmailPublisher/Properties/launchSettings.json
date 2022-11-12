@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GRVAS.Training.CeuEmailPublisher": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "NETCORE_ENVIRONMENT": "dev"
+      }
+    }
+  }
+}
