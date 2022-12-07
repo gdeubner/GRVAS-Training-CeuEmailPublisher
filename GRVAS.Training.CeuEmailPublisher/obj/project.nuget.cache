@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yItBgeYgpX7CcwivzMPtzZfJ5hKjrQ8AfbCKKwBXfQNsBf9/Vu0Fo2/3lw++c3tgkTVCMFzTrpC//T9i59u/xQ==",
+  "dgSpecHash": "1ebqPNIhxvKFipKPpGjY1jpeM9e1nUFfsm+rvbUwez9K2EjARw+MgZJDwk9D7dKu1PTuxUBC/M/NBudhv3DnmA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gdeubner\\Documents\\Projects\\GRVAS\\TrainingCeuEmailCreator\\GRVAS.Training.CeuEmailPublisher\\GRVAS.Training.CeuEmailPublisher\\GRVAS.Training.CeuEmailPublisher.csproj",
+  "projectFilePath": "C:\\Users\\gdeubner\\Documents\\Projects\\GRVAS\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailPublisher\\GRVAS.Training.CeuEmailPublisher.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gdeubner\\.nuget\\packages\\autofac\\6.4.0\\autofac.6.4.0.nupkg.sha512",
     "C:\\Users\\gdeubner\\.nuget\\packages\\autofac.extensions.dependencyinjection\\8.0.0\\autofac.extensions.dependencyinjection.8.0.0.nupkg.sha512",

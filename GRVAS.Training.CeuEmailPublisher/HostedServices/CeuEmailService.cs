@@ -27,7 +27,7 @@ internal class CeuEmailService : IHostedService
         _recurringJobManager.AddOrUpdate(
             "CEU class notifir",
             () => _emailProcessor.ProcessAsync(),
-             $"{DateTime.UtcNow.AddMinutes(1).Minute} * * * *",
+             $"0 9 1 * *",
               TimeZoneInfo.Utc);
 
         var jobs = JobStorage.Current.GetConnection().GetRecurringJobs();
