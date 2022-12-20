@@ -1,0 +1,123 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Code\\GRVAS-Training-CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj": {}
+  },
+  "projects": {
+    "C:\\Code\\GRVAS-Training-CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj": {
+      "version": "3.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Code\\GRVAS-Training-CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj",
+        "projectName": "GRVAS.Training.CeuEmailTrigger",
+        "projectPath": "C:\\Code\\GRVAS-Training-CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj",
+        "packagesPath": "C:\\Users\\gdeub\\.nuget\\packages\\",
+        "outputPath": "C:\\Code\\GRVAS-Training-CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\gdeub\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AWSSDK": {
+              "target": "Package",
+              "version": "[2.3.55.2, )"
+            },
+            "Amazon.Lambda.Core": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Amazon.Lambda.Logging.AspNetCore": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Amazon.Lambda.SNSEvents": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "Amazon.Lambda.Serialization.Json": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
+            "Aspose.Cells": {
+              "target": "Package",
+              "version": "[22.7.0, )"
+            },
+            "Autofac.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.90, )"
+            },
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.46, )"
+            },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[3.4.1, )"
+            },
+            "NLog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Crossgen2.win-x64",
+              "version": "[6.0.11, 6.0.11]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

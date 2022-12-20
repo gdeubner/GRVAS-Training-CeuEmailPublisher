@@ -1,0 +1,25 @@
+service: ceu-email-trigger
+
+provider:
+  name: aws  
+  runtime: dotnet6
+  region: us-east-1
+  stage: ${opt:stage,'devs'}
+  environment:
+    MOUNTAINSIDE_URL: ${file(appsettings.${self:provider.stage}.json):MOUNTAINSIDE_URL}
+    RWJ_URL: ${file(appsettings.${self:provider.stage}.json):RWJ_URL}
+    BERGEN_COUNTY_URL: ${file(appsettings.${self:provider.stage}.json):BERGEN_COUNTY_URL}
+    SENDER_EMAIL: ${file(appsettings.${self:provider.stage}.json):SENDER_EMAIL}
+    DESTINATION_EMAIL: ${file(appsettings.${self:provider.stage}.json):DESTINATION_EMAIL}
+    ENV: ${file(appsettings.${self:provider.stage}.json):ENV} 
+  iam:
+    role: arn:aws:iam::080412924906:role/SES-Basic-Sending
+
+    
+package:
+  artifact: bin/release/net6.0/deploy-package.zip
+
+functions:
+  main:
+    handler: GRVAS.Training.CeuEmailTrigger::GRVAS.Training.CeuEmailTrigger.Function::FunctionHandler
+    timeout: 600

@@ -1,0 +1,25 @@
+{
+  "profiles": {
+    "Mock Lambda Test Tool": {
+      "commandName": "Executable",
+      "commandLineArgs": "--port 5050",
+      "workingDirectory": ".\\bin\\$(Configuration)\\net6.0",
+      "executablePath": "%USERPROFILE%\\.dotnet\\tools\\dotnet-lambda-test-tool-6.0.exe",
+      "environmentVariables": {
+        "MOUNTAINSIDE_URL": "https://mountainsidehosp.com/services/emergency-services/ems-education-cprfirst-aid",
+        "RWJ_URL": "https://trainingcentertechnologies.com/rwjbh/CourseEnrollment.aspx",
+        "BERGEN_COUNTY_URL": "https://bergencountyems.enrollware.com/schedule",
+        "SENDER_EMAIL": "gdeubner@gmail.com",
+        "DESTINATION_EMAIL": "gdeubner@gmail.com",
+        "ENV": "dev",
+        "AWS": {
+          "UseAppConfig": "true",
+          "Key": "",
+          "Secret": "",
+          "Region": "us-east-1"
+
+        }
+      }
+    }
+  }
+}

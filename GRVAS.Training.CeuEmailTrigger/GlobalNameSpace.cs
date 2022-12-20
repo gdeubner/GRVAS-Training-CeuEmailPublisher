@@ -1,0 +1,17 @@
+﻿global using Amazon;
+global using Amazon.Lambda.Core;
+global using Amazon.SimpleEmail;
+global using Amazon.SimpleEmail.Model;
+global using Autofac;
+global using Autofac.Extensions.DependencyInjection;
+global using GRVAS.Training.CeuEmailCreator.WebScrapers;
+global using GRVAS.Training.CeuEmailTrigger.Email;
+global using GRVAS.Training.CeuEmailTrigger.Model;
+global using GRVAS.Training.CeuEmailTrigger.Prossessor;
+global using GRVAS.Training.CeuEmailTrigger.WebScrapers;
+global using HtmlAgilityPack;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using MimeKit;
+global using System.Net;
+global using System.Text;
