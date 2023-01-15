@@ -2,17 +2,24 @@
 
 internal class RwjbhWebScraper : IRwjbhWebScraper
 {
+    private readonly ILogger<RwjbhWebScraper> _logger;
+
+    public RwjbhWebScraper(ILogger<RwjbhWebScraper> logger)
+    {
+        _logger = logger;
+    }
+
     public List<CeuClass> GetClasses(string RwjUrl, string month)
     {
         try
         {
-            Console.WriteLine("Getting RWJBH classes");
+            _logger.LogInformation("Getting RWJBH classes");
             HtmlNodeCollection classNodes = _getRWJClassDetails(RwjUrl);
             return _filter(_parseClassDetails(classNodes), month);
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message);
+            _logger.LogError(e.Message);
             return new List<CeuClass>();
         }
     }
@@ -31,7 +38,7 @@ internal class RwjbhWebScraper : IRwjbhWebScraper
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occured while loading the html for url: {url} Exc: {e}");
+            _logger.LogError($"An error occured while loading the html for url: {url} Exc: {e}");
             return null;
         }
     }
@@ -90,7 +97,7 @@ internal class RwjbhWebScraper : IRwjbhWebScraper
             }
             catch (Exception e)
             {
-                Console.WriteLine($"An error occured while parsing a class: Exc: {e}");
+                _logger.LogError($"An error occured while parsing a class: Exc: {e}");
                 return new List<CeuClass>();
             }
 

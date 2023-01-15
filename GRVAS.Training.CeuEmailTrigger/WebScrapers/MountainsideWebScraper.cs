@@ -2,17 +2,24 @@
 
 internal class MountainsideWebScraper : IMountainsideWebScraper
 {
+    private readonly ILogger<MountainsideWebScraper> _logger;
+
+    public MountainsideWebScraper(ILogger<MountainsideWebScraper> logger)
+    {
+        _logger = logger;
+    }
+
     public List<CeuClass> GetClasses(string MountainsideUrl, string month)
     {
         try
         {
-            Console.WriteLine("Getting Mountainside classes");
+            _logger.LogInformation("Getting Mountainside classes");
             HtmlNodeCollection classNodes = _getMountainsideClassDetails(MountainsideUrl);
             return _filter(_getMountainsideClasses(classNodes), month);
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.StackTrace);
+            _logger.LogError(e.StackTrace);
             return new List<CeuClass>();
         }
     }
@@ -32,7 +39,7 @@ internal class MountainsideWebScraper : IMountainsideWebScraper
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occured while loading the html for url: {url} Exc: {e}");
+            _logger.LogError($"An error occured while loading the html for url: {url} Exc: {e}");
             return null;
         }
     }
@@ -79,7 +86,7 @@ internal class MountainsideWebScraper : IMountainsideWebScraper
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occured while parsing a class: Exc: {e}");
+            _logger.LogError($"An error occured while parsing a class: Exc: {e}");
             return new List<CeuClass>();
         }
     }

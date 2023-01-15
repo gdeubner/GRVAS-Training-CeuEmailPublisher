@@ -4,13 +4,16 @@ internal class EmailGenerator : IEmailGenerator
 {
     private readonly string _sender;
     private readonly string _recipient;
+    private readonly ILogger<EmailGenerator> _logger;
 
     public EmailGenerator(
         string sender,
-        string recipient)
+        string recipient,
+        ILogger<EmailGenerator> logger)
     {
         _sender = sender;
         _recipient = recipient;
+        _logger = logger;
     }
 
     public MimeMessage Generate(string emailBodyContent, string month)
@@ -25,11 +28,7 @@ internal class EmailGenerator : IEmailGenerator
             message.Subject = $"GRVAS {month} CEU Opportunities";
 
             var emailBody = new BodyBuilder();
-            /*string emailTextBody;
-            var path = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "Email", "EmailTemplates", "ExportEmail.html");
-            emailTextBody = File.ReadAllText(path);
-            emailTextBody = emailTextBody.Replace("{RouteReporterUrl}", $"{_routeReporterUrl}");*/
-
+            
             var bodyBuilder = new BodyBuilder();
             bodyBuilder.TextBody = emailBodyContent;
 
@@ -39,7 +38,7 @@ internal class EmailGenerator : IEmailGenerator
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Failed to generate email body. Exc: [{e}]");
+            _logger.LogError($"Failed to generate email body. Exc: [{e}]");
             return null;
         }
     }

@@ -1,6 +1,4 @@
-﻿using GRVAS.Training.CeuEmailTrigger.WebScrapers;
-
-namespace GRVAS.Training.CeuEmailTrigger.Email;
+﻿namespace GRVAS.Training.CeuEmailTrigger.Email;
 
 internal class EmailContentGenerator : IEmailContentGenerator
 {
@@ -9,6 +7,7 @@ internal class EmailContentGenerator : IEmailContentGenerator
     private readonly string _BergenCountyUrl;
     private readonly IMountainsideWebScraper _mountainsideWebScraper;
     private readonly IRwjbhWebScraper _rwjbhWebScraper;
+    private readonly ILogger<EmailContentGenerator> _logger;
 
     private readonly string FILE_NAME = "EmailTemplate.txt";
 
@@ -17,36 +16,43 @@ internal class EmailContentGenerator : IEmailContentGenerator
         string rwjbhUrl,
         string bergenCountyUrl,
         IMountainsideWebScraper mountainsideWebScraper,
-        IRwjbhWebScraper rwjbhWebScraper)
+        IRwjbhWebScraper rwjbhWebScraper,
+        ILogger<EmailContentGenerator> logger)
     {
         _mountainsideUrl = mountainsideUrl;
         _rwjbhUrl = rwjbhUrl;
         _BergenCountyUrl = bergenCountyUrl;
         _mountainsideWebScraper = mountainsideWebScraper;
         _rwjbhWebScraper = rwjbhWebScraper;
+        _logger = logger;
     }
 
     public string Generate(string month)
     {
         try
         {
-            Console.WriteLine($"Generating email for month of {month}");
-
-            var body = File.ReadAllText($"../../../Model/{FILE_NAME}");
+            _logger.LogInformation($"Generating email for month of {month}");
+            
+            var body = File.ReadAllText($"{Directory.GetCurrentDirectory()}/Model/{FILE_NAME}");
 
             var mountainsideClasses = _mountainsideWebScraper.GetClasses(_mountainsideUrl, month);
 
             var rwjbhClasses = _rwjbhWebScraper.GetClasses(_rwjbhUrl, month);
 
-            body = body.Replace("<month>", month).Replace("<RwjbhUrl>", _rwjbhUrl).Replace("<RwjbhClasses>", _stringifyClasses(rwjbhClasses))
-                .Replace("<MountainsideUrl>", _mountainsideUrl).Replace("<MountainsideClasses>", _stringifyClasses(mountainsideClasses))
+            body = body.Replace("<month>", month)
+                .Replace("<RwjbhUrl>", _rwjbhUrl)
+                .Replace("<RwjbhClasses>", rwjbhClasses.Count > 0 ? _stringifyClasses(rwjbhClasses)
+                    : $"There are no RWJBH classes for the month of {month}.")
+                .Replace("<MountainsideUrl>", _mountainsideUrl)
+                .Replace("<MountainsideClasses>", mountainsideClasses.Count > 0 ? _stringifyClasses(mountainsideClasses) 
+                    : $"There are no Mountainside classes for the month of {month}.")
                 .Replace("<BergenCountyURL>", _BergenCountyUrl);
 
             return body;
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error was thrown while generating email. Exc: {e}");
+            _logger.LogError($"An error was thrown while generating email. Current working directory: {Directory.GetCurrentDirectory()} Exc: {e}");
             return null;
         }
     }

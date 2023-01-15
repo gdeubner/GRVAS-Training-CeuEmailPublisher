@@ -1,5 +1,7 @@
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 
+using Microsoft.Extensions.Configuration;
+
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
 
 namespace GRVAS.Training.CeuEmailTrigger;
@@ -17,10 +19,6 @@ internal class Function
 
     private const string SENDER_EMAIL = "SENDER_EMAIL";
     private const string DESTINATION_EMAIL = "DESTINATION_EMAIL";
-
-
-    private const string SENDER_SECRET = "";
-    private const string DESTINATION_SECRET = "";
 
 
     public bool FunctionHandler()
@@ -50,6 +48,11 @@ internal class Function
     {
         try
         {
+            IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.dev.json", optional: false)
+               .Build();
+
             // Environment Variables
             var environment = (Environment.GetEnvironmentVariable("ENV") ?? "dev").ToLower();
 
@@ -72,9 +75,9 @@ internal class Function
 
             //Email
             builder.RegisterType<EmailContentGenerator>().As<IEmailContentGenerator>().SingleInstance()
-                .WithParameter("mountainsideUrl", Environment.GetEnvironmentVariable(MOUNTAINSIDE_URL))
-                .WithParameter("rwjbhUrl", Environment.GetEnvironmentVariable(RWJ_URL))
-                .WithParameter("bergenCountyUrl", Environment.GetEnvironmentVariable(BERGEN_COUNTY_URL));
+                .WithParameter("mountainsideUrl", configuration[MOUNTAINSIDE_URL])
+                .WithParameter("rwjbhUrl", configuration[RWJ_URL])
+                .WithParameter("bergenCountyUrl", configuration[BERGEN_COUNTY_URL]);
             builder.RegisterType<EmailGenerator>().As<IEmailGenerator>().SingleInstance()
                 .WithParameter("sender", senderEmail)
                 .WithParameter("recipient", destinationEmail);

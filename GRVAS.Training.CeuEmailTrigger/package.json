@@ -1,0 +1,13 @@
+{
+  "name": "ceu-email-trigger",
+  "description": "emails grvas members available ceu classes for current month",
+  "author": "Graham Deubner",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "dotnet restore && dotnet lambda package --configuration release --framework net6.0 --output-package bin/release/net6.0/deploy-package.zip",
+    "deploy": "npm run build && npm run test && serverless deploy --verbose"
+  },
+  "devDependencies": {
+    "serverless": "^1.81.1" 
+  }
+}

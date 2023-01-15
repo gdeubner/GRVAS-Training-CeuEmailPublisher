@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Code\\GRVAS-Training-CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj": {}
+    "C:\\code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj": {}
   },
   "projects": {
-    "C:\\Code\\GRVAS-Training-CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj": {
+    "C:\\code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj": {
       "version": "3.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Code\\GRVAS-Training-CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj",
+        "projectUniqueName": "C:\\code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj",
         "projectName": "GRVAS.Training.CeuEmailTrigger",
-        "projectPath": "C:\\Code\\GRVAS-Training-CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj",
-        "packagesPath": "C:\\Users\\gdeub\\.nuget\\packages\\",
-        "outputPath": "C:\\Code\\GRVAS-Training-CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger\\obj\\",
+        "projectPath": "C:\\code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj",
+        "packagesPath": "C:\\Users\\Graham\\.nuget\\packages\\",
+        "outputPath": "C:\\code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\gdeub\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Graham\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,9 +40,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "AWSSDK": {
+            "AWSSDK.SimpleEmail": {
               "target": "Package",
-              "version": "[2.3.55.2, )"
+              "version": "[3.7.100.54, )"
             },
             "Amazon.Lambda.Core": {
               "target": "Package",
@@ -76,9 +76,21 @@
               "target": "Package",
               "version": "[1.11.46, )"
             },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
             "Microsoft.Extensions.Http": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[6.0.0, )"
             },
             "MimeKit": {
               "target": "Package",
@@ -91,6 +103,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[6.0.1, )"
             }
           },
           "imports": [
@@ -106,8 +122,16 @@
           "warn": true,
           "downloadDependencies": [
             {
+              "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
+              "version": "[6.0.12, 6.0.12]"
+            },
+            {
               "name": "Microsoft.NETCore.App.Crossgen2.win-x64",
-              "version": "[6.0.11, 6.0.11]"
+              "version": "[6.0.12, 6.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.linux-x64",
+              "version": "[6.0.12, 6.0.12]"
             }
           ],
           "frameworkReferences": {
@@ -115,7 +139,12 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "linux-x64": {
+          "#import": []
         }
       }
     }

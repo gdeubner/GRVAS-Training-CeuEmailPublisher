@@ -3,11 +3,14 @@
 internal class EmailSender : IEmailSender
 {
     private readonly IAmazonSimpleEmailService _client;
+    private readonly ILogger<EmailSender> _logger;
 
-
-    public EmailSender(IAmazonSimpleEmailService client)
+    public EmailSender(
+        IAmazonSimpleEmailService client,
+        ILogger<EmailSender> logger)
     {
         _client = client;
+        _logger = logger;
     }
 
     public async Task<bool> SendAsync(MimeMessage mimeMessage, string month)
@@ -17,17 +20,17 @@ internal class EmailSender : IEmailSender
             using var memoryStream = new MemoryStream();
             await mimeMessage.WriteToAsync(memoryStream);
             var rawRequest = new SendRawEmailRequest { RawMessage = new RawMessage(memoryStream) };
-            Console.WriteLine($"Sending email for month: {month}");
+            _logger.LogInformation($"Sending email for month: {month}");
             var response = await _client.SendRawEmailAsync(rawRequest);
             if (response.HttpStatusCode == HttpStatusCode.OK)
             {
-                Console.WriteLine($"The email was sent successfully. month: {month}");
+                _logger.LogInformation($"The email was sent successfully. month: {month}");
                 mimeMessage.Dispose();
                 return true;
             }
             else
             {
-                Console.WriteLine($"Failed to send email with message Id: {response.MessageId}, to: {mimeMessage.To}, due to: " +
+                _logger.LogInformation($"Failed to send email with message Id: {response.MessageId}, to: {mimeMessage.To}, due to: " +
                     $"{response.HttpStatusCode}, month: {month}.");
                 mimeMessage.Dispose();
                 return false;
@@ -35,7 +38,7 @@ internal class EmailSender : IEmailSender
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"The email was not sent. month: {month}, Error Message [{ex.Message}]");
+            _logger.LogError($"The email was not sent. month: {month}, Error Message [{ex.Message}]");
             mimeMessage.Dispose();
             return false;
         }
