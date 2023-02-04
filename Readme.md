@@ -9,7 +9,7 @@ Requirements for testing and deploying: You will need to install node, .net7 (or
 
 To (re)deploy this lambda to aws, run the following from your terminal, opened to the folder containing the serverless.yml folder:
 `npm run build`
-`serverless deploy --stage dev --aws-profile email-access`
+`serverless deploy --stage dev --aws-profile default`
 
 Once deployed, the lambda will autimatically run at 9am on the first day of every month. This can be changed by editing the cron setting in the serverless.yaml file.
 
