@@ -24,7 +24,7 @@ internal class RwjbhWebScraper : IRwjbhWebScraper
         }
     }
 
-    private HtmlNodeCollection _getRWJClassDetails(string url)
+    private HtmlNodeCollection? _getRWJClassDetails(string url)
     {
         try
         {
@@ -45,7 +45,7 @@ internal class RwjbhWebScraper : IRwjbhWebScraper
 
     private List<CeuClass> _filter(List<CeuClass> list, string month)
     {
-        return list.Where(x => x.Date.Contains(month) && !x.IsInPerson).ToList();
+        return list.Where(x => x.Date.Contains(month) && x.Cost < 10).ToList();
     }
 
     private List<CeuClass> _parseClassDetails(HtmlNodeCollection classNodes)
@@ -80,10 +80,12 @@ internal class RwjbhWebScraper : IRwjbhWebScraper
                 newClass.Town = childList[2].Elements("span").ToList()[3].GetDirectInnerText();
                 newClass.State = childList[2].Elements("span").ToList()[5].GetDirectInnerText();
                 newClass.ZipCode = childList[2].Elements("span").ToList()[6].GetDirectInnerText();
-
-                newClass.Enrolled = int.Parse(childList[3].Element("b").Element("span").GetDirectInnerText().Split(", ")[0].Split(": ")[1]);
-                newClass.MaxEnrolled = int.Parse(childList[3].Element("b").Element("span").GetDirectInnerText().Split(", ")[1].Split(": ")[1]);
-                newClass.Cost = childList[3].Element("b").Elements("span").ToList()[1].GetDirectInnerText().Split("$")[1];
+                newClass.Enrolled = int.Parse(childList[3].Element("b").Element("span")
+                    .GetDirectInnerText().Split(", ")[0].Split(": ")[1]);
+                newClass.MaxEnrolled = int.Parse(childList[3].Element("b").Element("span")
+                    .GetDirectInnerText().Split(", ")[1].Split(": ")[1]);
+                newClass.Cost = double.TryParse(childList[3].Element("b").Elements("span")
+                    .ToList()[1].GetDirectInnerText().Split("$")[1], out var cost) ? cost : null;
                 if (newClass.LocationName.ToLower().Contains("online"))
                 {
                     newClass.IsInPerson = false;

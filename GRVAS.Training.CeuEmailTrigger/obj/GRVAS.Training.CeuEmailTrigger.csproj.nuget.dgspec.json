@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj": {}
+    "C:\\Code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj": {}
   },
   "projects": {
-    "C:\\code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj": {
+    "C:\\Code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj": {
       "version": "3.0.0",
       "restore": {
-        "projectUniqueName": "C:\\code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj",
+        "projectUniqueName": "C:\\Code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj",
         "projectName": "GRVAS.Training.CeuEmailTrigger",
-        "projectPath": "C:\\code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj",
-        "packagesPath": "C:\\Users\\Graham\\.nuget\\packages\\",
-        "outputPath": "C:\\code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\obj\\",
+        "projectPath": "C:\\Code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\GRVAS.Training.CeuEmailTrigger.csproj",
+        "packagesPath": "C:\\Users\\gdeub\\.nuget\\packages\\",
+        "outputPath": "C:\\Code\\GRVAS-Training-CeuEmailPublisher\\GRVAS.Training.CeuEmailTrigger\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Graham\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\gdeub\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -122,16 +122,8 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
-              "version": "[6.0.12, 6.0.12]"
-            },
-            {
               "name": "Microsoft.NETCore.App.Crossgen2.win-x64",
-              "version": "[6.0.12, 6.0.12]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Runtime.linux-x64",
-              "version": "[6.0.12, 6.0.12]"
+              "version": "[6.0.11, 6.0.11]"
             }
           ],
           "frameworkReferences": {
@@ -139,12 +131,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "linux-x64": {
-          "#import": []
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -19,4 +19,4 @@ functions:
     timeout: 600
     events:
       - eventBridge:
-          schedule: cron(0 9 1 * ? *)
+          schedule: cron(0 14 1 * ? *)

@@ -2,12 +2,13 @@
 
 internal class CeuClass
 {
-    public bool IsInPerson { get; set; }
+    public double? Ceus { get; set; }
+    public bool? IsInPerson { get; set; }
     public string? Title { get; set; }
     public string? Note { get; set; }
-    public int Enrolled { get; set; }
-    public int MaxEnrolled { get; set; }
-    public string? Cost { get; set; }
+    public int? Enrolled { get; set; }
+    public int? MaxEnrolled { get; set; }
+    public double? Cost { get; set; }
     public string? Date { get; set; }
     public string? Time { get; set; }
     public string? Description { get; set; }
@@ -22,7 +23,9 @@ internal class CeuClass
         return @$"Class Title: {Title}
             Time: {Date}, {Time}
             Location: {LocationName}
-            Cost: ${Cost}, Open Spots: {(MaxEnrolled == 0 ? "Unknown" : MaxEnrolled - Enrolled)}
-            Description: {Description}";
+            Cost: ${(Cost!=null?((double)Cost).ToString("F"):"Unknown")}, Open Spots: {
+            (MaxEnrolled == null || Enrolled == null || MaxEnrolled == 0 ?"Unknown" : MaxEnrolled - Enrolled)}
+            Description: {Description}
+            Notes: {Note ?? "N/A"}";
     }
 }
