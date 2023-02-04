@@ -44,7 +44,7 @@ internal class EmailContentGenerator : IEmailContentGenerator
                 .Replace("<RwjbhClasses>", rwjbhClasses.Count > 0 ? _stringifyClasses(rwjbhClasses)
                     : $"There are no RWJBH classes for the month of {month}.")
                 .Replace("<MountainsideUrl>", _mountainsideUrl)
-                .Replace("<MountainsideClasses>", mountainsideClasses.Count > 0 ? _stringifyClasses(mountainsideClasses) 
+                .Replace("<MountainsideClasses>", mountainsideClasses.Count > 0 ? _stringifyClasses(mountainsideClasses)
                     : $"There are no Mountainside classes for the month of {month}.")
                 .Replace("<BergenCountyURL>", _BergenCountyUrl);
 
