@@ -5,8 +5,6 @@ internal class EmailContentGenerator : IEmailContentGenerator
     private readonly string _mountainsideUrl;
     private readonly string _rwjbhUrl;
     private readonly string _BergenCountyUrl;
-    private readonly IMountainsideWebScraper _mountainsideWebScraper;
-    private readonly IRwjbhWebScraper _rwjbhWebScraper;
     private readonly ILogger<EmailContentGenerator> _logger;
 
     private readonly string FILE_NAME = "EmailTemplate.txt";
@@ -15,29 +13,21 @@ internal class EmailContentGenerator : IEmailContentGenerator
         string mountainsideUrl,
         string rwjbhUrl,
         string bergenCountyUrl,
-        IMountainsideWebScraper mountainsideWebScraper,
-        IRwjbhWebScraper rwjbhWebScraper,
         ILogger<EmailContentGenerator> logger)
     {
         _mountainsideUrl = mountainsideUrl;
         _rwjbhUrl = rwjbhUrl;
         _BergenCountyUrl = bergenCountyUrl;
-        _mountainsideWebScraper = mountainsideWebScraper;
-        _rwjbhWebScraper = rwjbhWebScraper;
         _logger = logger;
     }
 
-    public string Generate(string month)
+    public string? Generate(string month, List<CeuClass> mountainsideClasses, List<CeuClass> rwjbhClasses)
     {
         try
         {
             _logger.LogInformation($"Generating email for month of {month}");
-            
+
             var body = File.ReadAllText($"{Directory.GetCurrentDirectory()}/Model/{FILE_NAME}");
-
-            var mountainsideClasses = _mountainsideWebScraper.GetClasses(_mountainsideUrl, month);
-
-            var rwjbhClasses = _rwjbhWebScraper.GetClasses(_rwjbhUrl, month);
 
             body = body.Replace("<month>", month)
                 .Replace("<RwjbhUrl>", _rwjbhUrl)

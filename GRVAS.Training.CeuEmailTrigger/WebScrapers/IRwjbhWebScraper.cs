@@ -2,5 +2,5 @@
 
 internal interface IRwjbhWebScraper
 {
-    List<CeuClass> GetClasses(string RwjUrl, string month);
+    List<CeuClass>? GetClasses(string RwjUrl, string month);
 }

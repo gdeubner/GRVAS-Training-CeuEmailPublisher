@@ -2,5 +2,5 @@
 
 internal interface IEmailGenerator
 {
-    MimeMessage Generate(string emailBodyContent, string month);
+    MimeMessage Generate(string emailBodyContent, string month, bool classesValid);
 }

@@ -9,7 +9,7 @@ internal class RwjbhWebScraper : IRwjbhWebScraper
         _logger = logger;
     }
 
-    public List<CeuClass> GetClasses(string RwjUrl, string month)
+    public List<CeuClass>? GetClasses(string RwjUrl, string month)
     {
         try
         {
@@ -20,7 +20,7 @@ internal class RwjbhWebScraper : IRwjbhWebScraper
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return new List<CeuClass>();
+            return null;
         }
     }
 
@@ -48,7 +48,7 @@ internal class RwjbhWebScraper : IRwjbhWebScraper
         return list.Where(x => x.Date.Contains(month) && x.Cost < 10).ToList();
     }
 
-    private List<CeuClass> _parseClassDetails(HtmlNodeCollection classNodes)
+    private List<CeuClass>? _parseClassDetails(HtmlNodeCollection classNodes)
     {
         var classes = new List<CeuClass>();
         foreach (var node in classNodes)
@@ -59,7 +59,7 @@ internal class RwjbhWebScraper : IRwjbhWebScraper
                 IEnumerable<HtmlNode> nodeCollection = node.Elements("td");
                 List<HtmlNode> childList = nodeCollection.ToList();
                 newClass.Title = childList[1].Element("span").GetDirectInnerText();
-                newClass.Note = childList[1].Elements("span").ToList()[1].Element("i").GetDirectInnerText();
+                newClass.Note = childList[1].Elements("span").ToList()[1].Element("i").GetDirectInnerText().Split("Note:")[1].Trim();
                 newClass.Date = childList[1].Element("div").Element("span").GetDirectInnerText();
                 string[] timeParse = childList[1].Element("div").Elements("span").ToList()[1].GetDirectInnerText().Split("&nbsp;");
                 if (timeParse.Length > 1)
@@ -100,7 +100,7 @@ internal class RwjbhWebScraper : IRwjbhWebScraper
             catch (Exception e)
             {
                 _logger.LogError($"An error occured while parsing a class: Exc: {e}");
-                return new List<CeuClass>();
+                return null;
             }
 
         }

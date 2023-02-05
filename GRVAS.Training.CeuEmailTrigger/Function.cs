@@ -1,5 +1,6 @@
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 
+using GRVAS.Training.CeuEmailTrigger.Validation;
 using Microsoft.Extensions.Configuration;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
@@ -19,6 +20,7 @@ internal class Function
 
     private const string SENDER_EMAIL = "SENDER_EMAIL";
     private const string DESTINATION_EMAIL = "DESTINATION_EMAIL";
+    private const string FAILURE_EMAIL = "FAILURE_EMAIL";
 
 
     public bool FunctionHandler()
@@ -69,9 +71,13 @@ internal class Function
 
             var senderEmail = Environment.GetEnvironmentVariable(SENDER_EMAIL);
             var destinationEmail = Environment.GetEnvironmentVariable(DESTINATION_EMAIL);
+            var failureEmail = Environment.GetEnvironmentVariable(FAILURE_EMAIL);
+
 
             // Job
-            builder.RegisterType<EmailProcessor>().AsSelf().As<IEmailProcessor>();
+            builder.RegisterType<EmailProcessor>().AsSelf().As<IEmailProcessor>()
+                .WithParameter("mountainsideUrl", configuration[MOUNTAINSIDE_URL])
+                .WithParameter("rwjbhUrl", configuration[RWJ_URL]);
 
             //Email
             builder.RegisterType<EmailContentGenerator>().As<IEmailContentGenerator>().SingleInstance()
@@ -80,13 +86,19 @@ internal class Function
                 .WithParameter("bergenCountyUrl", configuration[BERGEN_COUNTY_URL]);
             builder.RegisterType<EmailGenerator>().As<IEmailGenerator>().SingleInstance()
                 .WithParameter("sender", senderEmail)
-                .WithParameter("recipient", destinationEmail);
+                .WithParameter("recipient", destinationEmail)
+                .WithParameter("failureRecipient", failureEmail);
+
             builder.RegisterInstance(_createEmailClient()).As<IAmazonSimpleEmailService>().SingleInstance();
             builder.RegisterType<EmailSender>().As<IEmailSender>().SingleInstance();
 
             // Web Scrapers
             builder.RegisterType<MountainsideWebScraper>().As<IMountainsideWebScraper>().SingleInstance();
             builder.RegisterType<RwjbhWebScraper>().As<IRwjbhWebScraper>().SingleInstance();
+
+            //validation
+            builder.RegisterType<ClassValidator>().As<IClassValidator>().SingleInstance();
+
 
             //Build 
             builder.Populate(services);
