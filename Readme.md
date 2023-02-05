@@ -17,3 +17,4 @@ In order for this lambda to run successfull, 2 environment variables must be add
 #Required Environment variables:
 - DESTINATION_EMAIL
 - SENDER_EMAIL
+- FAILURE_EMAIL
