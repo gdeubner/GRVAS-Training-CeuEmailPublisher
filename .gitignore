@@ -49,3 +49,5 @@ projects/Pocket/pcmsole/pcmsole_h.h
 projects/Pocket/pcmsole/pcmsole_i.c
 projects/Pocket/pcmsole/pcmsole_p.c
 src/pcmsole/pcmsole.tlb
+
+project.nuget.cache

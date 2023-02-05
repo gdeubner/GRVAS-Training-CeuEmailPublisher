@@ -20,12 +20,12 @@ internal class CeuClass
 
     public string FormClassOutput()
     {
-        return @$"Class Title: {Title}
-            Time: {Date}, {Time}
-            Location: {LocationName}
-            Cost: ${(Cost!=null?((double)Cost).ToString("F"):"Unknown")}, Open Spots: {
-            (MaxEnrolled == null || Enrolled == null || MaxEnrolled == 0 ?"Unknown" : MaxEnrolled - Enrolled)}
-            Description: {Description}
-            Notes: {Note ?? "N/A"}";
+        return $"Class Title: {Title}\n" +
+            $"Time: {Date}, {Time}\n" +
+            $"Location: {LocationName}\n" +
+            $"Cost: ${(Cost!=null?((double)Cost).ToString("F"):"Unknown")}, Open Spots:" +
+            $"{(MaxEnrolled == null || Enrolled == null || MaxEnrolled == 0 ?"Unknown" : MaxEnrolled - Enrolled)}\n" +
+            $"{(!string.IsNullOrEmpty(Description) ? $"Description: {Description}\n" : "")}" +
+            $"{(!string.IsNullOrEmpty(Note) ? $"Note: {Note}\n" : "")}";
     }
 }
